@@ -35,11 +35,14 @@
                         {
                             <li class="nav-item">
                                 <form asp-action="ConfirmLogout" asp-controller="Account" method="post">
-                                    <input class="btn btn-danger" type="submit" value="Logout" />
+                                    <input class="btn btn-danger" type="submit" value="Logout" /
                                 </form>
                             </li>
                             <li>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ViewProfile">View profile</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ViewTransaction">My transaction</a>
                             </li>
                             @* @if (User.IsInRole("Admin")) *@
                             @* { *@
