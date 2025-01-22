@@ -1,0 +1,62 @@
+﻿@model RegisterViewModel
+@{
+	ViewData["Title"] = "Register";
+}
+
+<h1>Register </h1>
+<form method="post" asp-action="Register">
+	<table class="table table-bordered">
+		<div asp-validation-summary="All" class="text-danger"></div>
+
+		<tr>
+			<th><label asp-for="Name">Enter your name</label></th>
+			<td>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="Email">Enter your email</label></th>
+			<td>
+				<input asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="ConfirmEmail">Enter your email confirmation</label></th>
+			<td>
+				<input asp-for="ConfirmEmail" class="form-control" />
+				<span asp-validation-for="ConfirmEmail" class="text text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="Password">Enter your password</label></th>
+			<td>
+				<input asp-for="Password" class="form-control" />
+				<span asp-validation-for="Password" class="text text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="ConfirmPassword">Enter your password confirmation</label></th>
+			<td>
+				<input asp-for="ConfirmPassword" class="form-control" />
+				<span asp-validation-for="ConfirmPassword" class="text text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="Mobile">Enter your Mobile</label></th>
+			<td>
+				<input asp-for="Mobile" class="form-control" />
+				<span asp-validation-for="Mobile" class="text text-danger"></span>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Save" class="btn btn-success" />
+				<a asp-action="Login" asp-controller="Account" class="btn btn-success">I have an account</a>
+			</td>
+		</tr>
+	</table>
+</form>
+
