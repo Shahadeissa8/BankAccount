@@ -17,7 +17,6 @@ namespace BankAccount.Controllers
             userManager = _userManager;
             signInManager = _signInManager;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -57,7 +56,6 @@ namespace BankAccount.Controllers
             }
             return View(model);
         }
-
         [AllowAnonymous]
         public IActionResult Login()
         {

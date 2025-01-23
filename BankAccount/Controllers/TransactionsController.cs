@@ -73,7 +73,6 @@ namespace BankAccount.Controllers
 
             return View(model);
         }
-
         [HttpPost]
         public async Task<IActionResult> Transfer(AllTransactionsViewModel model)
         {
@@ -185,7 +184,6 @@ namespace BankAccount.Controllers
                     return RedirectToAction(nameof(InsufficientFunds));
                 }
                 MyTransaction objTrana = new MyTransaction()
-
                 {
                     Amount = model.Amount,
                     DateOfTransaction = DateTime.Now,
@@ -195,8 +193,6 @@ namespace BankAccount.Controllers
                     MyTransactionId = Guid.NewGuid().ToString()
 
                 };
-
-
                 db.MyTransactions.Add(objTrana);
                 db.SaveChanges();
                 return RedirectToAction("ViewProfile", "Account");

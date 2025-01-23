@@ -7,7 +7,6 @@
 <form method="post" asp-action="Register">
 	<table class="table table-bordered">
 		<div asp-validation-summary="All" class="text-danger"></div>
-
 		<tr>
 			<th><label asp-for="Name">Enter your name</label></th>
 			<td>
@@ -50,7 +49,6 @@
 				<span asp-validation-for="Mobile" class="text text-danger"></span>
 			</td>
 		</tr>
-
 		<tr>
 			<td colspan="2">
 				<input type="submit" value="Register" class="btn btn-success" />
