@@ -1,0 +1,53 @@
+﻿@model SearchViewModel
+@{
+	ViewData["Title"] = "My transaction";
+}
+
+<h1 class="text text-center">My transaction</h1>
+<div class=" alert alert-secondary">
+	<form class="text text-center" asp-controller="Transactions" asp-action="ViewTransaction" method="get">
+		Search	<label asp-for="Amount">by amount</label>
+		<input placeholder="Search Amount" asp-for="Amount" />
+
+		<label>by date</label>
+		<input asp-for="FromDate" type="date" value="" />
+		<input asp-for="ToDate" type="date" value="" />
+		Filter
+		<select asp-for="Type">
+			<option value="All" selected>All</option>
+			<option value="Deposit">Deposit</option>
+			<option value="Withdraw">Withdraw</option>
+			<option value="Transfer">Transfer</option>
+		</select>
+
+		<button class="btn btn-secondary" type="submit">Go</button>
+	</form>
+</div>
+<table class="table table-bordered table-hover text text-center">
+	<tr>
+		<th>Transaction</th>
+		<th>Amount</th>
+		<th>DateOfTransaction</th>
+	</tr>
+	@foreach (var item in Model.Transactions)
+	{
+		<tr>
+			<td>
+				@if (item.Transaction == MyTransaction.Transactions.Transfer)
+				{
+					<span class="text-danger">@item.Transaction</span>
+				}
+				else if (item.Transaction == MyTransaction.Transactions.Withdraw)
+				{
+					<span class="text-danger">@item.Transaction</span>
+				}
+				else if (item.Transaction == MyTransaction.Transactions.Deposit)
+				{
+					<span class="text-success">@item.Transaction</span>
+				}
+			</td>
+			<td>@item.Amount</td>
+			<td>@item.DateOfTransaction</td>
+		</tr>
+	}
+</table>

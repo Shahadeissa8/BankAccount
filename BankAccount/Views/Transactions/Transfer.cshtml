@@ -1,0 +1,27 @@
+﻿@model AllTransactionsViewModel
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+<h1>Transfer</h1>
+
+<form method="post" asp-action="Transfer">
+	<h5>Current balance: @Model.Balance KD</h5>
+	@Html.HiddenFor(x => x.UserId)
+
+	<table class="table table-bordered">
+		<tr>
+			<th><label asp-for="Amount">Enter the amount you want to transfer </label></th>
+			<td>
+				<input asp-for="Amount" class="form-control" />
+				<span asp-validation-for="Amount" class="text text-danger"></span>
+			</td>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Save" class="btn btn-success" />
+				<a asp-action="Login" asp-controller="Account" class="btn btn-success">I have an account</a>
+			</td>
+		</tr>
+	</table>
+</form>
+

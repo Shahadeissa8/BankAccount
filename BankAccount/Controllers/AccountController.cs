@@ -17,6 +17,7 @@ namespace BankAccount.Controllers
             userManager = _userManager;
             signInManager = _signInManager;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -35,20 +36,20 @@ namespace BankAccount.Controllers
             {
                 ApplicationUser user = new ApplicationUser()
                 {
-                    UserName=model.Name,
+                    UserName = model.Name,
                     Email = model.Email,
                     PhoneNumber = model.Mobile,
-                    Balance=1000
+                    Balance = 1000
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
 
-                   await signInManager.SignInAsync(user, isPersistent: false);
-                    
-                   return RedirectToAction("Index", "Home");
+                    await signInManager.SignInAsync(user, isPersistent: false);
+
+                    return RedirectToAction("Index", "Home");
                 }
-                foreach (var error in result.Errors) 
+                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
@@ -68,12 +69,16 @@ namespace BankAccount.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(model.Name, model.Password, model.RememberMe, false);
+
+                Console.WriteLine("Username: " + model.Name);
+                Console.WriteLine("Password: " + model.Password);
+                Console.WriteLine("RemeberMe: " + model.RememberMe);
+                var result = await signInManager.PasswordSignInAsync(userName:model.Name, model.Password, false, false);
                 if (result.Succeeded)
                 {
-                    var r=await userManager.GetUserAsync(User);
-                    HttpContext.Session.SetString("Balance",r.Balance.ToString());
-                    HttpContext.Session.SetString("Name",r.UserName.ToString());
+                    var r = await userManager.GetUserAsync(User);
+                    HttpContext.Session.SetString("Balance", r.Balance.ToString());
+                    HttpContext.Session.SetString("Name", r.UserName.ToString());
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError(string.Empty, "Invalid user or password");
@@ -82,8 +87,13 @@ namespace BankAccount.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult ViewProfile()
+        public async Task<IActionResult> ViewProfile()
         {
+
+            var r = await userManager.GetUserAsync(User);
+            HttpContext.Session.SetString("Balance", r.Balance.ToString());
+            HttpContext.Session.SetString("Name", r.UserName.ToString());
+
             return View();
         }
         [HttpGet]
@@ -96,11 +106,6 @@ namespace BankAccount.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult ViewTransaction()
-        {
-            return View();
         }
     }
 }
