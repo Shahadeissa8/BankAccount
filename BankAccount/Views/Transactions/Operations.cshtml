@@ -4,12 +4,12 @@
     ViewData["Title"] = "Operations";
 }
 
-<h1>Operations</h1>
+<h1 class="text text-center">Operations</h1>
 
-<h2 class="text text-center">Balance : @Model.Balance KD</h2>
+<h5 class="text text-center">Current balance : @Model.Balance KD</h5>
 <form method="post" asp-action="Operations">
 	@Html.HiddenFor(x => x.UserId)
-	<table class="table table-bordered text text-center">
+	<div class="text text-center">
 		<tr>
 			<th><label asp-for="TypeOT"></label></th>
 			<td><select asp-for="TypeOT" asp-items="@Html.GetEnumSelectList<BankAccount.Models.MyTransaction.Transactions>()"></select></td>
@@ -21,12 +21,12 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input class="btn btn-primary" type="submit" value="save" />
-			</td>
-			<td><a asp-action="ViewProfile" asp-controller="Account" class="btn btn-danger">Cancel</a></td>
+				<input class="btn custom-success text-black" type="submit" value="save" />
+		
+			<a asp-action="Index" asp-controller="Home" class="btn custom-danger text-black">Cancel</a></>
 		</tr>
 
-	</table>
+	</div>
 </form>
 @section Scripts
 {

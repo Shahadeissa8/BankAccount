@@ -4,7 +4,8 @@
 }
 
 <h1 class="text text-center">My transaction</h1>
-<div class=" alert alert-secondary">
+@* <h5>Current Balance: @Context.Session.GetString("Balance")</h5> *@
+<div class=" alert-warning">
 	<form class="text text-center" asp-controller="Transactions" asp-action="ViewTransaction" method="get">
 		Search	<label asp-for="Amount">by amount</label>
 		<input placeholder="Search Amount" asp-for="Amount" />
@@ -20,7 +21,7 @@
 			<option value="Transfer">Transfer</option>
 		</select>
 
-		<button class="btn btn-secondary" type="submit">Go</button>
+		<button class="link-secondary" type="submit">Go</button>
 	</form>
 </div>
 <table class="table table-bordered table-hover text text-center">

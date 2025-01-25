@@ -170,7 +170,7 @@ namespace BankAccount.Controllers
                 };
                 db.MyTransactions.Add(objTrana);
                 db.SaveChanges();
-                return RedirectToAction("ViewProfile", "Account");
+                return RedirectToAction(nameof(ViewTransaction));
             }
             else if (model.TypeOT == (MyTransaction.Transactions)2) //withdraw
             {
@@ -195,11 +195,11 @@ namespace BankAccount.Controllers
                 };
                 db.MyTransactions.Add(objTrana);
                 db.SaveChanges();
-                return RedirectToAction("ViewProfile", "Account");
+                return RedirectToAction(nameof(ViewTransaction));
             }
 
             db.SaveChanges();
-            return RedirectToAction("ViewProfile", "Account");
+            return RedirectToAction(nameof(ViewTransaction));
         }
         public IActionResult InsufficientFunds()
         {

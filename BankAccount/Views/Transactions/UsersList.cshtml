@@ -5,22 +5,17 @@
 
 <h1 class="text text-center">Your beneficiaries</h1>
 <h2 class="text text-center"> My Balance : @ViewBag.MyBalance </h2>
-<a asp-action="AddBeneficiary" class="btn btn-success btn">Add beneficiary</a>
-<div class="container">
-	<div class="row justify-content-center">
-		@foreach (var em in Model)
-		{
-			<div class="col-md-4 mb-4">
-				<div class="card text-center" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">@em.UserName</h5>
-						<p>Balance: @em.Balance</p>
-						<a asp-action="Transfer" asp-route-id="@em.Id" class="btn btn-primary">Transfer</a>
-					</div>
+<div class="row justify-content-center">
+	@foreach (var em in Model)
+	{
+		<div class="col-md-4 mb-4 d-flex align-items-stretch">
+			<div class="card text-center" style="width: 100%;">
+				<div class="card-body shadow">
+					<h5 class="card-title">@em.UserName</h5>
+					<p>Balance: @em.Balance</p>
+					<a asp-action="Transfer" asp-route-id="@em.Id" class="btn custom-success text-black">Transfer</a>
 				</div>
 			</div>
-		}
-	</div>
+		</div>
+	}
 </div>
-
-
